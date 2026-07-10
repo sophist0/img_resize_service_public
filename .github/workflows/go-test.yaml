@@ -3,9 +3,9 @@ name: Go Test CI
 # Trigger the workflow on pushes or pull requests to the main branch
 on:
   push:
-    branches: [ main, release_1 ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, release_1 ]
+    branches: [ main ]
 
 jobs:
   test:
