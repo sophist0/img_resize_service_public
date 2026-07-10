@@ -1,0 +1,4 @@
+[resize api]
+
+    resize endpoint: /resize/new_height/new_width/file_path
+

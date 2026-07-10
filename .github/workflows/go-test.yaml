@@ -1,0 +1,35 @@
+name: Go Test CI
+
+# Trigger the workflow on pushes or pull requests to the main branch
+on:
+  push:
+    branches: [ main, release_1 ]
+  pull_request:
+    branches: [ main, release_1 ]
+
+jobs:
+  test:
+    name: Run Go Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Install system dependencies (libvips-dev) needed for govips (CGO)
+      - name: Install libvips
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libvips-dev
+
+      # Step 2: Dynamically read the Go version from your go.mod file
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          cache: true # Automatically caches Go modules for faster subsequent runs
+
+      # Step 3: Run the tests
+      - name: Run Tests
+        run: go test -v ./server/
