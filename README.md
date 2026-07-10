@@ -2,7 +2,15 @@
 
 ## Run Server
 
+### Not containerized and without Prometheus and Grafana
+
     go run ./server/main.go
+
+### Containerized and with Prometheus and Grafana
+
+    docker compose up
+
+Can see Prometheus metrics at http://localhost:9090 and setup Grafana dashboards at http://localhost:3000.
 
 ## Run Client
 
